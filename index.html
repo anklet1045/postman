@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- //  ADDING FAV ICON INTO OUR WEBSITE -->
+    <link rel="icon" type="image/png" href="/favicon_io/favicon-32x32.png">
+    <link rel="stylesheet" href="prism.css">
+    <style>
+        #img {
+            width: 43px;
+            border-radius: 5px;
+            border-color: #e3f2fd;
+            /* padding: 14px; */
+            margin-right: 20px;
+        }
+
+        img {
+            background: none;
+        }
+
+        /* #responsePri{
+            overflow-x: auto;
+            overflow-y: auto;
+        } */
+    </style>
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <!-- <h1>Hello, world!</h1> -->
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <div class="img"><img src="R.jfif" alt="postman" id="img"></div>
+            <a class="navbar-brand" href="#">PostMaster</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="conrainer" id="alerts"></div>
+    <div class="container my-3">
+        <div class="my-3">
+            <h1>Welcome to PostMaster</h1>
+        </div>
+        <div class="mb-3 row">
+            <label for="url" class="col-sm-2 col-form-label ">URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="url" placeholder="Enter your url here..">
+            </div>
+        </div>
+
+
+        <!-- Request type content/\ -->
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Request Type</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="requestType" id="get" value="get" checked>
+                    <label class="form-check-label" for="gridRadios1">
+                        GET
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="requestType" id="post" value="post">
+                    <label class="form-check-label" for="gridRadios2">
+                        POST
+                    </label>
+                </div>
+
+            </div>
+        </fieldset>
+
+
+        <!-- Content type of response -->
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Content Type</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contentType" id="jsonRadio" value="json" checked>
+                    <label class="form-check-label" for="gridRadios1">
+                        JSON
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contentType" id="paramsRadio" value="params">
+                    <label class="form-check-label" for="gridRadios2">
+                        Custom Parameters
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- parameters box will be written here -->
+        <div id="paramsBox">
+            <div class="row g-4 ">
+                <label for="inputPassword" class="col-sm-2 col-form-label ">Parameter 1</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="parameterKey1" placeholder="Enter Parameter 1 Key"
+                        aria-label="City">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="parameterValue1" placeholder="Enter Parameter 1 Value"
+                        aria-label="State">
+                </div>
+                <!-- <div class="col-sm"> -->
+                <button class=" btn btn-primary btn-sm " id="addParam" style="width:35px;"> + </button>
+
+                <!-- </div> -->
+            </div>
+            <div id="params"></div>
+
+        </div>
+
+        <!-- adding parameters when some clicks on + button -->
+
+        <!-- ENTER REQUEST JSON -->
+        <div id="requestJson">
+            <div class="mb-3 row my-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Enter request json</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="requestJsonText" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="submit">Submit</button>
+
+        <!-- response -->
+        <div class="mb-3 row my-3">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Response</label>
+            <div class="col-sm-10">
+                <!-- <textarea class="form-control" id="responseJsonText"
+                    rows="3">Your response will be appear here..</textarea> -->
+                <pre id="responsePri" class="language-javascript">
+                        <code id="responsePrism" class="language-javascript">
+                            <!-- verticalScroll: true,
+                            zoomKey: 'ctrlKey' -->
+                        </code>
+                    </pre>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="prism.js"></script>
+
+
+</body>
+
+</html>
